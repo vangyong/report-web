@@ -4,6 +4,7 @@
  */
 /* eslint-disable */
 export const host = HOST  //统一用host请求后台接口
+export const report_host = REPORT_HOST
 /* eslint-enable */
 
 // file
@@ -137,4 +138,11 @@ export const API_COMMENT_GOODS = `${host}/v1/mall/comment/goods`
 // deliver
 export const API_DELIVER = `${host}/v1/mall/deliver`
 export const API_DELIVER_LIST_ORDER = `${host}/v1/mall/deliver/order`
+
+
+// report_address
+export const API_REPORT_ADDRESS = `${report_host}/v2/address`
+export const API_REPORT_ADDRESS_LIST = `${report_host}/v2/address/list`
+export const API_REPORT_ADDRESS_DETAIL = `${report_host}/v2/address/detail`
+export const API_REPORT_ADDRESS_STATUS = `${report_host}/v2/address/status`
 

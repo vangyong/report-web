@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 import account from './account'
 import address from './address'
 import cart from './cart'
@@ -14,25 +14,27 @@ import item from './item'
 import order from './order'
 import region from './region'
 import buyer from './buyer'
+import report from './report'
 import seller from './seller'
 import user from './user'
 
 export default combineReducers({
-  account,
-  address,
-  cart,
-  cate,
-  comment,
-  coupon,
-  deliver,
-  experience,
-  feedback,
-  goods,
-  home,
-  item,
-  order,
-  region,
-  buyer,
-  seller,
-  user
+    account,
+    address,
+    cart,
+    cate,
+    comment,
+    coupon,
+    deliver,
+    experience,
+    feedback,
+    goods,
+    home,
+    item,
+    order,
+    region,
+    buyer,
+    seller,
+    report,
+    user
 })
