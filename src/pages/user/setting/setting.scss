@@ -1,0 +1,28 @@
+@import '@styles/theme.scss';
+
+.user-setting {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 40px 40px 70px;
+  background: #ffffff;
+}
+
+.user-setting__logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 100px;
+
+  &-img {
+    width: 268px;
+    height: 90px;
+  }
+}
+
+.user-setting__wrap {
+  position: relative;
+  z-index: 2;
+}
+
+

@@ -1,0 +1,41 @@
+@import '@styles/theme.scss';
+
+.user-setting-personal {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 40px 40px 700px;
+  background: #ffffff;
+}
+
+.user-setting-personal__wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.user-setting-personal__suggest {
+  position: absolute;
+  top: 108px;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  background: #ffffff;
+
+  &-item {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-txt {
+      color: $text-color;
+      font-size: 24px;
+    }
+  }
+}
+
+.user-setting-personal__btn {
+  position: relative;
+  margin-top: 60px;
+  z-index: 1;
+}

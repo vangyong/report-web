@@ -1,0 +1,8 @@
+export const USER_INFO = 'USER_INFO'
+export const USER_LOGIN = 'USER_LOGIN'
+export const USER_LOGOUT = 'USER_LOGOUT'
+export const USER_ADD = 'USER_ADD'
+export const USER_UPDATE = 'USER_UPDATE'
+export const USER_MOBILE_UPDATE = 'USER_MOBILE_UPDATE'
+export const USER_PASSWORD_UPDATE = 'USER_PASSWORD_UPDATE'
+

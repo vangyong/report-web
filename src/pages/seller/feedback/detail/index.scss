@@ -1,0 +1,14 @@
+@import "@styles/theme.scss";
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 50px 40px 700px;
+  background: #ffffff;
+
+  &__card{
+    margin: 10px;
+  }
+}
+

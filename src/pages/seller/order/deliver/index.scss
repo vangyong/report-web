@@ -1,0 +1,58 @@
+@import "@styles/theme.scss";
+
+.deliver {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 20px 10px;
+  background: #ffffff;
+}
+
+.deliver_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.deliver-list {
+  margin-top: 20px;
+}
+
+.deliver-list__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24px 30px 46px;
+  background: #ffffff;
+
+  &-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 52px;
+  }
+
+  &-name {
+    flex: 1;
+    color: $text-color;
+    font-size: 28px;
+    line-height: 42px;
+    @include text-ellipsis;
+  }
+
+  &-price {
+    color: $text-color;
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  &-amount {
+    color: $text-color;
+    font-size: 28px;
+    line-height: 28px;
+  }
+}
+
+

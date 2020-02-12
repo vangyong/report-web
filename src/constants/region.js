@@ -1,0 +1,5 @@
+export const REGION_PROVINCE = 'REGION_PROVINCE'
+export const REGION_CITY = 'REGION_CITY'
+export const REGION_COUNTY = 'REGION_COUNTY'
+export const REGION_TOWNS = 'REGION_TOWNS'
+export const REGION_CHILD = 'REGION_CHILD'

@@ -1,0 +1,22 @@
+@import '@styles/theme.scss';
+
+.user-setting-password {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 40px 40px 700px;
+  background: #ffffff;
+}
+
+
+.user-setting-password__wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.user-setting-password__code {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+}
+

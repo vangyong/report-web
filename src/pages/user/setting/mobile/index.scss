@@ -1,0 +1,21 @@
+@import '@styles/theme.scss';
+
+.user-setting-mobile {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 40px 40px 700px;
+  background: #ffffff;
+}
+
+.user-setting-mobile__wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.user-setting-mobile__code {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+}
+

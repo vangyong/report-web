@@ -1,0 +1,18 @@
+{
+	"miniprogramRoot": "dist/",
+	"projectname": "report-web",
+	"description": "Taro 多端实践之报单（微信小程序 + H5 + React Native）",
+	"appid": "wx7530b76032e2ff3a",
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {}
+}

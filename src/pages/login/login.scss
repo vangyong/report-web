@@ -1,0 +1,46 @@
+@import '@styles/theme.scss';
+
+.login {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 40px 40px 0;
+  background: #ffffff;
+}
+
+.login__logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 100px;
+
+  &-img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.login__reg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 56px;
+
+  &-txt {
+    color: $text-color;
+    font-size: 28px;
+    line-height: 28px;
+  }
+}
+
+.login__business {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 56px;
+  &-txt {
+    color: $text-color;
+    font-size: 28px;
+    line-height: 28px;
+  }
+}

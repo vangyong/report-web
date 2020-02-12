@@ -1,0 +1,9 @@
+@import "@styles/theme.scss";
+
+.seller-order {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 20px 10px;
+  background: #ffffff;
+}

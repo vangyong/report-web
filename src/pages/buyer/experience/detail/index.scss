@@ -1,0 +1,83 @@
+@import "@styles/theme.scss";
+
+.experience {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 50px 40px 700px;
+  background: #ffffff;
+}
+
+//.experience {
+//  display: flex;
+//  flex-direction: row;
+//  justify-content: center;
+//  margin-bottom: 60px;
+//  &-txt {
+//    width: 100%;
+//    text-align: center;
+//    height: 90px;
+//  }
+//}
+
+.order {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 60px;
+  &-txt {
+    width: 100%;
+    text-align: center;
+    height: 90px;
+  }
+}
+
+
+.order-detail-list {
+  margin-top: 20px;
+}
+
+.order-detail-list__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24px 30px 46px;
+  background: #ffffff;
+
+  &-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 52px;
+  }
+
+  &-name {
+    flex: 1;
+    color: $text-color;
+    font-size: 28px;
+    line-height: 42px;
+    @include text-ellipsis;
+  }
+
+  &-price {
+    color: $text-color;
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  &-amount {
+    color: $text-color;
+    font-size: 28px;
+    line-height: 28px;
+  }
+}
+
+

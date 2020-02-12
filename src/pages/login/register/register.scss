@@ -1,0 +1,53 @@
+@import '@styles/theme.scss';
+
+.login-register {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 40px 40px 0px;
+  background: #ffffff;
+}
+
+.login-register__logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 100px;
+
+  &-img {
+    width: 210px;
+    height: 210px;
+  }
+}
+
+.login-register__wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.login-register__suggest {
+  position: absolute;
+  top: 108px;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  background: #ffffff;
+
+  &-item {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-txt {
+      color: $text-color;
+      font-size: 24px;
+    }
+  }
+}
+
+.login-register__btn {
+  position: relative;
+  margin-top: 60px;
+  z-index: 1;
+}

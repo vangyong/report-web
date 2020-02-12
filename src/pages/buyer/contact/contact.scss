@@ -1,0 +1,16 @@
+@import "@styles/theme.scss";
+
+.buyer-contact {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 50px 40px 700px;
+  background: #ffffff;
+
+  &__card-item{
+    margin: 10px;
+
+  }
+
+
+}
