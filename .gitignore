@@ -1,0 +1,9 @@
+dist/
+.temp/
+.rn_temp/
+node_modules/
+.DS_Store
+.idea/
+.project
+npm-debug.log
+yarn-error.log
