@@ -4,11 +4,11 @@ import { connect } from '@tarojs/redux'
 import * as actions from '@actions/report'
 import {USER_KEY} from '@constants/common'
 import {AtButton, AtList, AtListItem} from 'taro-ui'
-import './address.scss'
+import './order.scss'
 import listTitle from "../../../assets/list-title.png";
 
 @connect(state => state.report, { ...actions })
-export default class Address extends Component {
+export default class Order extends Component {
   config = {
     navigationBarTitleText: '收货地址'
   }
@@ -43,9 +43,9 @@ export default class Address extends Component {
   render () {
     const list = this.state.list
     return (
-      <View className='address'>
-        <View className='address__wrap'>
-          <AtButton formType='submit' onClick={this.toDetail.bind(this)}>添加地址</AtButton>
+      <View className='order'>
+        <View className='order__wrap'>
+          <AtButton formType='submit' onClick={this.toDetail.bind(this)}>添加报单</AtButton>
           <AtList className='address__list'>
             {
               list.map(item=>(

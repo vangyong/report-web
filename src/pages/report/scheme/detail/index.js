@@ -12,7 +12,7 @@ import './index.scss'
 export default class Detail extends Component {
 
     config = {
-        navigationBarTitleText: '地址详情'
+        navigationBarTitleText: '方案详情'
     }
 
     constructor(props) {
@@ -26,14 +26,12 @@ export default class Detail extends Component {
     }
 
     componentDidShow() {
-        let addressId = this.$router.params.addressId
-        if (addressId != undefined) {
-            this.props.dispatchReportAddressGet({addressId: addressId}).then((res) => {
+        let schemeId = this.$router.params.schemeId
+        if (schemeId != undefined) {
+            this.props.dispatchReportSchemeGet({schemeId: schemeId}).then((res) => {
                 this.setState({
-                    detailContent: res.detailContent,
-                    addressId: res.addressId,
-                    shortName: res.shortName,
-                    status: res.status == 1 ? true : false
+                    schemeDetail: res.schemeDetail,
+                    schemeId: res.schemeId,
                 })
             })
         }
@@ -53,23 +51,21 @@ export default class Detail extends Component {
 
 
     handleSubmit = () => {
-        if (!this.state.detailContent) {
+        if (!this.state.schemeDetail) {
             Taro.showToast({
-                title: '详细地址不能为空',
+                title: '详细不能为空',
                 icon: 'none'
             })
             return
         }
         let payload = {
-            detailContent: this.state.detailContent,
-            addressId: this.state.addressId,
-            shortName: this.state.shortName,
-            status: this.state.status == true ? 1 : 2
+            schemeDetail: this.state.schemeDetail,
+            schemeId: this.state.schemeId
         }
         if (!this.state.addressId) {
-            this.props.dispatchReportAddressCreate(payload).then((res) => {
+            this.props.dispatchReportSchemeCreate(payload).then((res) => {
                 Taro.navigateTo({
-                    url: `/pages/report/address/address`
+                    url: `/pages/report/scheme/scheme`
                 })
             }).catch(() => {
                 Taro.showToast({
@@ -78,9 +74,9 @@ export default class Detail extends Component {
                 })
             })
         } else {
-            this.props.dispatchReportAddressUpdate(payload).then((res) => {
+            this.props.dispatchReportSchemeUpdate(payload).then((res) => {
                 Taro.navigateTo({
-                    url: `/pages/report/address/address`
+                    url: `/pages/report/scheme/scheme`
                 })
             }).catch(() => {
                 Taro.showToast({
@@ -95,37 +91,22 @@ export default class Detail extends Component {
     render() {
         return (
             < View
-        className = 'address-detail' >
+        className = 'scheme-detail' >
             < View
-        className = 'address-detail__wrap' >
-            < AtInput
-        name = 'shortName'
-        title = '简称：'
-        type = 'text'
-        placeholder = '简称'
-        value = {this.state.shortName
-    }
-        onChange = {this.handleChange.bind(this, 'shortName')
-    }
-        />
+        className = 'scheme-detail__wrap' >
+
         < AtInput
-        name = 'detailContent'
-        title = '详细地址：'
+        name = 'schemeDetail'
+        title = '方案详细：'
         type = 'text'
-        placeholder = '详细地址'
-        value = {this.state.detailContent
+        placeholder = '方案详细'
+        value = {this.state.schemeDetail
     }
-        onChange = {this.handleChange.bind(this, 'detailContent')
+        onChange = {this.handleChange.bind(this, 'schemeDetail')
     }
         />
 
-        < AtSwitch
-        title = '状态'
-        checked = {this.state.status
-    }
-        onChange = {this.handleStatus
-    }
-        />
+
 
         < /View>
         < View >

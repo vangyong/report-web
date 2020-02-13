@@ -61,8 +61,13 @@ class App extends Component {
             'pages/buyer/address/detail/index',
             'pages/buyer/help/help',
             'pages/buyer/contact/contact',
+            'pages/report/manager/manager',
             'pages/report/address/address',
-            'pages/report/address/detail/index'
+            'pages/report/address/detail/index',
+            'pages/report/scheme/scheme',
+            'pages/report/scheme/detail/index',
+            'pages/report/order/order',
+            'pages/report/order/detail/index'
         ],
         window: {
             backgroundTextStyle: 'light',

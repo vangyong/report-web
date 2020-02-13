@@ -4,13 +4,13 @@ import { connect } from '@tarojs/redux'
 import * as actions from '@actions/report'
 import {USER_KEY} from '@constants/common'
 import {AtButton, AtList, AtListItem} from 'taro-ui'
-import './address.scss'
+import './scheme.scss'
 import listTitle from "../../../assets/list-title.png";
 
 @connect(state => state.report, { ...actions })
-export default class Address extends Component {
+export default class Scheme extends Component {
   config = {
-    navigationBarTitleText: '收货地址'
+    navigationBarTitleText: '方案'
   }
 
   constructor () {
@@ -21,7 +21,7 @@ export default class Address extends Component {
   }
 
   componentDidShow() {
-      this.props.dispatchReportAddressList().then((res) => {
+      this.props.dispatchReportSchemeList().then((res) => {
           this.setState({
               list: res
           })
@@ -29,13 +29,13 @@ export default class Address extends Component {
   }
 
   toDetail (item) {
-    if(item && item.addressId){
+    if(item && item.schemeId){
       Taro.navigateTo({
-        url: `/pages/report/address/detail/index?addressId=`+item.addressId
+        url: `/pages/report/scheme/detail/index?schemeId=`+item.schemeId
       })
     }else{
       Taro.navigateTo({
-        url: `/pages/report/address/detail/index`
+        url: `/pages/report/scheme/detail/index`
       })
     }
   }
@@ -43,18 +43,16 @@ export default class Address extends Component {
   render () {
     const list = this.state.list
     return (
-      <View className='address'>
-        <View className='address__wrap'>
-          <AtButton formType='submit' onClick={this.toDetail.bind(this)}>添加地址</AtButton>
+      <View className='scheme'>
+        <View className='scheme__wrap'>
+          <AtButton formType='submit' onClick={this.toDetail.bind(this)}>添加方案</AtButton>
           <AtList className='address__list'>
             {
               list.map(item=>(
                   <AtListItem
-                    key={item.addressId}
-                    title={item.shortName}
-                    note={item.detailContent}
+                    key={item.schemeId}
+                    note={item.schemeDetail}
                     arrow='right'
-                    extraText={item.status==1?'上报':'关闭'}
                     onClick={this.toDetail.bind(this,item)}
                     thumb={listTitle}
                   />

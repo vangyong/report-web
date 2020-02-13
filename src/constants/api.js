@@ -146,3 +146,10 @@ export const API_REPORT_ADDRESS_LIST = `${report_host}/v2/address/list`
 export const API_REPORT_ADDRESS_DETAIL = `${report_host}/v2/address/detail`
 export const API_REPORT_ADDRESS_STATUS = `${report_host}/v2/address/status`
 
+// report_scheme
+export const API_REPORT_SCHEME = `${report_host}/v2/scheme`
+export const API_REPORT_SCHEME_LIST = `${report_host}/v2/scheme/list`
+
+// report_order
+export const API_REPORT_ORDER = `${report_host}/v2/order`
+export const API_REPORT_ORDER_LIST = `${report_host}/v2/order/list`

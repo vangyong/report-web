@@ -95,9 +95,9 @@ export default class Detail extends Component {
     render() {
         return (
             < View
-        className = 'address-detail' >
+        className = 'order-detail' >
             < View
-        className = 'address-detail__wrap' >
+        className = 'order-detail__wrap' >
             < AtInput
         name = 'shortName'
         title = '简称：'
