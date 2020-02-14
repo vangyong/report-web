@@ -125,7 +125,7 @@ export const dispatchReportSchemeList = payload => createAction({
  * @param {*} payload
  */
 export const dispatchReportSchemeGet = payload => createAction({
-    url: API_REPORT_SCHEME+`/${payload.addressId}`,
+    url: API_REPORT_SCHEME+`/${payload.schemeId}`,
     type: REPORT_SCHEME_GET,
     method: 'GET',
     payload
@@ -182,7 +182,7 @@ export const dispatchReportOrderList = payload => createAction({
  * @param {*} payload
  */
 export const dispatchReportOrderGet = payload => createAction({
-    url: API_REPORT_ORDER+`/${payload.addressId}`,
+    url: API_REPORT_ORDER+`/${payload.orderId}`,
     type: REPORT_ORDER_GET,
     method: 'GET',
     payload

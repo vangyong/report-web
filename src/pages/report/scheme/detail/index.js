@@ -18,9 +18,10 @@ export default class Detail extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            schemeId: '',
+            schemeDetail: '',
             addressId: '',
-            shortName: '',
-            detailContent: '',
+            addressDetail: '',
             status: ''
         }
     }
@@ -32,6 +33,8 @@ export default class Detail extends Component {
                 this.setState({
                     schemeDetail: res.schemeDetail,
                     schemeId: res.schemeId,
+                    addressId: res.addressId,
+                    addressDetail: res.addressDetail,
                 })
             })
         }
@@ -60,9 +63,11 @@ export default class Detail extends Component {
         }
         let payload = {
             schemeDetail: this.state.schemeDetail,
+            addressId: this.state.addressId,
+            addressDetail: this.state.addressDetail,
             schemeId: this.state.schemeId
         }
-        if (!this.state.addressId) {
+        if (!this.state.schemeId) {
             this.props.dispatchReportSchemeCreate(payload).then((res) => {
                 Taro.navigateTo({
                     url: `/pages/report/scheme/scheme`

@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { Text, View, Picker} from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import * as actions from '@actions/report'
 import {USER_KEY} from '@constants/common'
@@ -16,16 +16,31 @@ export default class Scheme extends Component {
   constructor () {
     super(...arguments)
     this.state = {
-      list: []
+        selector: ['美国', '中国', '巴西', '日本'],
+        selectorChecked: '美国',
+        list: []
     }
   }
 
   componentDidShow() {
+
+      this.props.dispatchReportAddressList().then((res) => {
+          this.setState({
+              selector: res
+          })
+      })
+
       this.props.dispatchReportSchemeList().then((res) => {
           this.setState({
               list: res
           })
       })
+  }
+
+  onChange = e => {
+    this.setState({
+        selectorChecked: this.state.selector[e.detail.value]
+    })
   }
 
   toDetail (item) {
@@ -45,6 +60,14 @@ export default class Scheme extends Component {
     return (
       <View className='scheme'>
         <View className='scheme__wrap'>
+          <View className='page-section'>
+          <Text>收货地址</Text>
+          <View>
+              <Picker mode='selector' range={this.state.selector} onChange={this.onChange}>
+                    <View className='picker'> 当前选择：{this.state.selectorChecked} </View>
+              </Picker>
+          </View>
+          </View>
           <AtButton formType='submit' onClick={this.toDetail.bind(this)}>添加方案</AtButton>
           <AtList className='address__list'>
             {
