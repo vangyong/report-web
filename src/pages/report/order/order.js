@@ -3,7 +3,7 @@ import {Picker, Text, View} from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import * as actions from '@actions/report'
 import {USER_KEY} from '@constants/common'
-import {AtButton, AtList, AtListItem} from 'taro-ui'
+import {AtButton, AtInput, AtList, AtListItem} from 'taro-ui'
 import './order.scss'
 import offlineTitle from "./assets/paypal-offline.png";
 import onlineTitle from "./assets/paypal-online.png";
@@ -55,6 +55,18 @@ export default class Order extends Component {
         })
   }
 
+  onExpressOrderChange(key, value) {
+        this.setState({
+            [key]: value
+        })
+
+        this.props.dispatchReportOrderList({'addressId':this.state.addressId,'schemeId':this.state.schemeId,'expressOrder':this.state.expressOrder}).then((res) => {
+            this.setState({
+                list: res
+            })
+        })
+  }
+
   componentDidShow() {
       this.props.dispatchReportAddressList().then((res) => {
           this.setState({
@@ -100,16 +112,24 @@ export default class Order extends Component {
           </View>
         </View>
 
+        < AtInput
+          name = 'expressOrder'
+          title = '运单号：'
+          type = 'text'
+          placeholder = '模糊查询'
+          onChange={this.onExpressOrderChange.bind(this, 'expressOrder')}
+          value = {this.state.expressOrder}/>
+
         <View className='order__wrap'>
           <AtList className='address__list'>
             {
               list.map(item=>(
                   <AtListItem
                     key={item.orderId}
-                    title={item.nickName}
-                    note={item.alipayAccount+':'+item.payMoney}
+                    title={item.nickName+'：'+item.payMoney}
+                    note={item.alipayAccount}
                     arrow='right'
-                    extraText={item.payType==1?'在线付':'货到付'}
+                    extraText={item.payType==1?'线付':'到付'}
                     onClick={this.toDetail.bind(this,item)}
                     thumb= {item.payType==1? onlineTitle:offlineTitle}
                   />
