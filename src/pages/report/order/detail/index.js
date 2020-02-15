@@ -51,6 +51,14 @@ export default class Detail extends Component {
                     remarks: res.remarks
                 })
             })
+        }else{
+            this.setState({
+                orderId: orderId,
+                addressId: addressId,
+                addressDetail: addressDetail,
+                schemeId: schemeId,
+                schemeDetail: schemeDetail,
+            })
         }
     }
 
@@ -103,7 +111,7 @@ export default class Detail extends Component {
                 })
             }).catch(() => {
                 Taro.showToast({
-                    title: '收货地址添加失败，请联系客服',
+                    title: '报单添加失败，请联系客服',
                     icon: 'none'
                 })
             })
@@ -114,7 +122,7 @@ export default class Detail extends Component {
                 })
             }).catch(() => {
                 Taro.showToast({
-                    title: '收货地址修改失败，请联系客服',
+                    title: '报单修改失败，请联系客服',
                     icon: 'none'
                 })
             })
@@ -158,7 +166,7 @@ export default class Detail extends Component {
         < AtSwitch
         title = '支付方式(1:在线付,2:货到付)'
         checked = {this.state.payType}
-        onChange = {this.handlePayType}
+        onChange = {this.handlePayType.bind(this)}
         />
 
         <AtTextarea count={false} value={this.state.expressOrder}
