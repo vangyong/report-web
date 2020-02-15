@@ -28,14 +28,21 @@ export default class Detail extends Component {
 
     componentDidShow() {
         let schemeId = this.$router.params.schemeId
+        let addressId = this.$router.params.addressId
+        let addressDetail = this.$router.params.addressDetail
         if (schemeId != undefined) {
             this.props.dispatchReportSchemeGet({schemeId: schemeId}).then((res) => {
                 this.setState({
                     schemeDetail: res.schemeDetail,
                     schemeId: res.schemeId,
-                    addressId: res.addressId,
-                    addressDetail: res.addressDetail,
+                    addressId: addressId,
+                    addressDetail: addressDetail,
                 })
+            })
+        }else{
+            this.setState({
+                addressId: addressId,
+                addressDetail: addressDetail,
             })
         }
     }
@@ -62,15 +69,15 @@ export default class Detail extends Component {
             return
         }
         let payload = {
+            schemeId: this.state.schemeId,
             schemeDetail: this.state.schemeDetail,
             addressId: this.state.addressId,
-            addressDetail: this.state.addressDetail,
-            schemeId: this.state.schemeId
+            addressDetail: this.state.addressDetail
         }
         if (!this.state.schemeId) {
             this.props.dispatchReportSchemeCreate(payload).then((res) => {
                 Taro.navigateTo({
-                    url: `/pages/report/scheme/scheme`
+                    url: `/pages/report/scheme/scheme?addressId=`+this.state.addressId+`&addressDetail=`+this.state.addressDetail
                 })
             }).catch(() => {
                 Taro.showToast({
@@ -81,7 +88,7 @@ export default class Detail extends Component {
         } else {
             this.props.dispatchReportSchemeUpdate(payload).then((res) => {
                 Taro.navigateTo({
-                    url: `/pages/report/scheme/scheme`
+                    url: `/pages/report/scheme/scheme?addressId=`+this.state.addressId+`&addressDetail=`+this.state.addressDetail
                 })
             }).catch(() => {
                 Taro.showToast({

@@ -20,7 +20,7 @@ export default class Detail extends Component {
         this.state = {
             addressId: '',
             shortName: '',
-            detailContent: '',
+            addressDetail: '',
             status: ''
         }
     }
@@ -30,7 +30,7 @@ export default class Detail extends Component {
         if (addressId != undefined) {
             this.props.dispatchReportAddressGet({addressId: addressId}).then((res) => {
                 this.setState({
-                    detailContent: res.detailContent,
+                    addressDetail: res.addressDetail,
                     addressId: res.addressId,
                     shortName: res.shortName,
                     status: res.status == 1 ? true : false
@@ -53,7 +53,7 @@ export default class Detail extends Component {
 
 
     handleSubmit = () => {
-        if (!this.state.detailContent) {
+        if (!this.state.addressDetail) {
             Taro.showToast({
                 title: '详细地址不能为空',
                 icon: 'none'
@@ -61,7 +61,7 @@ export default class Detail extends Component {
             return
         }
         let payload = {
-            detailContent: this.state.detailContent,
+            addressDetail: this.state.addressDetail,
             addressId: this.state.addressId,
             shortName: this.state.shortName,
             status: this.state.status == true ? 1 : 2
@@ -109,13 +109,13 @@ export default class Detail extends Component {
     }
         />
         < AtInput
-        name = 'detailContent'
+        name = 'addressDetail'
         title = '详细地址：'
         type = 'text'
         placeholder = '详细地址'
-        value = {this.state.detailContent
+        value = {this.state.addressDetail
     }
-        onChange = {this.handleChange.bind(this, 'detailContent')
+        onChange = {this.handleChange.bind(this, 'addressDetail')
     }
         />
 

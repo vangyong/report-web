@@ -16,41 +16,68 @@ export default class Scheme extends Component {
   constructor () {
     super(...arguments)
     this.state = {
-        selector: ['美国', '中国', '巴西', '日本'],
-        selectorChecked: '美国',
+        selector: [],
+        selectorChecked: '',
+        addressId:'',
+        addressDetail:'',
         list: []
     }
   }
 
   componentDidShow() {
-
+      let addressId = this.$router.params.addressId
+      let addressDetail = this.$router.params.addressDetail
+      if(addressId!=null&&addressDetail!=null){
+          this.setState({
+              selectorChecked: addressDetail,
+              addressDetail: addressDetail,
+              addressId:addressId
+          })
+      }
       this.props.dispatchReportAddressList().then((res) => {
           this.setState({
               selector: res
           })
+
+          this.props.dispatchReportSchemeList({'addressId':this.state.addressId}).then((res) => {
+              this.setState({
+                  list: res
+              })
+          })
+      })
+  }
+
+  onChange = e => {
+      let addressId = this.state.selector[e.detail.value].addressId
+
+      this.setState({
+          selectorChecked: this.state.selector[e.detail.value].addressDetail,
+          addressDetail: this.state.selector[e.detail.value].addressDetail,
+          addressId:addressId
       })
 
-      this.props.dispatchReportSchemeList().then((res) => {
+      this.props.dispatchReportSchemeList({'addressId':addressId}).then((res) => {
           this.setState({
               list: res
           })
       })
   }
 
-  onChange = e => {
-    this.setState({
-        selectorChecked: this.state.selector[e.detail.value]
-    })
-  }
-
   toDetail (item) {
+      if(!this.state.addressId){
+          Taro.showToast({
+              title: '请先选择收货地址',
+              icon: 'none'
+          })
+          return
+      }
     if(item && item.schemeId){
       Taro.navigateTo({
-        url: `/pages/report/scheme/detail/index?schemeId=`+item.schemeId
+        url: `/pages/report/scheme/detail/index?schemeId=`+item.schemeId+`&addressId=`+this.state.addressId+`&addressDetail=`+this.state.addressDetail
       })
     }else{
       Taro.navigateTo({
-        url: `/pages/report/scheme/detail/index`
+        url: `/pages/report/scheme/detail/index?addressId=`+this.state.addressId+`&addressDetail=`+this.state.addressDetail
       })
     }
   }
@@ -63,7 +90,7 @@ export default class Scheme extends Component {
           <View className='page-section'>
           <Text>收货地址</Text>
           <View>
-              <Picker mode='selector' range={this.state.selector} onChange={this.onChange}>
+              <Picker mode='selector' range={this.state.selector} rangeKey='addressDetail' onChange={this.onChange}>
                     <View className='picker'> 当前选择：{this.state.selectorChecked} </View>
               </Picker>
           </View>

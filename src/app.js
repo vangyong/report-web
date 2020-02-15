@@ -67,6 +67,7 @@ class App extends Component {
             'pages/report/scheme/scheme',
             'pages/report/scheme/detail/index',
             'pages/report/order/order',
+            // 'pages/report/order/fill',
             'pages/report/order/detail/index'
         ],
         window: {

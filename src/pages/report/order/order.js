@@ -21,7 +21,7 @@ export default class Order extends Component {
   }
 
   componentDidShow() {
-      this.props.dispatchReportAddressList().then((res) => {
+      this.props.dispatchReportOrderList().then((res) => {
           this.setState({
               list: res
           })
@@ -29,13 +29,13 @@ export default class Order extends Component {
   }
 
   toDetail (item) {
-    if(item && item.addressId){
+    if(item && item.orderId){
       Taro.navigateTo({
-        url: `/pages/report/address/detail/index?addressId=`+item.addressId
+        url: `/pages/report/order/detail/index?orderId=`+item.orderId
       })
     }else{
       Taro.navigateTo({
-        url: `/pages/report/address/detail/index`
+        url: `/pages/report/order/detail/index`
       })
     }
   }
@@ -50,8 +50,8 @@ export default class Order extends Component {
             {
               list.map(item=>(
                   <AtListItem
-                    key={item.addressId}
-                    title={item.shortName}
+                    key={item.orderId}
+                    title={item.nickName}
                     note={item.detailContent}
                     arrow='right'
                     extraText={item.status==1?'上报':'关闭'}

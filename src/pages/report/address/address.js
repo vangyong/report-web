@@ -52,7 +52,7 @@ export default class Address extends Component {
                   <AtListItem
                     key={item.addressId}
                     title={item.shortName}
-                    note={item.detailContent}
+                    note={item.addressDetail}
                     arrow='right'
                     extraText={item.status==1?'上报':'关闭'}
                     onClick={this.toDetail.bind(this,item)}
