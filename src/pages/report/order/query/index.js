@@ -41,18 +41,17 @@ export default class Query extends Component {
     }
 
     handleSubmit = () => {
-        if (!this.state.nickName) {
+        if (!this.state.alipayAccount) {
             Taro.showToast({
-                title: '微信昵称不能为空',
+                title: 'ZFB账号不能为空',
                 icon: 'none'
             })
             return
         }
 
-        this.props.dispatchReportOrderQuery({nickName: this.state.nickName}).then((res) => {
-            if(res){
+        this.props.dispatchReportOrderQuery({alipayAccount: this.state.alipayAccount}).then((res) => {
+            if(res && res[0]){
                 let order = res[0]
-                console.log(order)
                 this.setState({
                     orderId:order.orderId,
                     nickName: order.nickName,
@@ -69,6 +68,11 @@ export default class Query extends Component {
                     realName: order.realName,
                     remarks: order.remarks
                 })
+            }else{
+                Taro.showToast({
+                    title: '未查询到报单',
+                    icon: 'none'
+                })
             }
         })
 
@@ -82,12 +86,12 @@ export default class Query extends Component {
             < View
         className = 'order-detail__wrap' >
             < AtInput
-        name = 'nickName'
-        title = '微信昵称：'
+        name = 'alipayAccount'
+        title = 'ZFB账号：'
         type = 'text'
-        placeholder = '微信昵称、ZFB账号'
-        value = {this.state.nickName}
-        onChange = {this.handleChange.bind(this, 'nickName')}
+        placeholder = 'ZFB账号'
+        value = {this.state.alipayAccount}
+        onChange = {this.handleChange.bind(this, 'alipayAccount')}
         />
 
         < AtButton onClick = {this.handleSubmit.bind(this)}> 查询 < /AtButton>

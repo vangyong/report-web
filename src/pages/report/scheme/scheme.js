@@ -16,8 +16,8 @@ export default class Scheme extends Component {
   constructor () {
     super(...arguments)
     this.state = {
-        selector: [],
-        selectorChecked: '',
+        addressSelector: [],
+        addressChecked: '',
         addressId:'',
         addressDetail:'',
         list: []
@@ -36,7 +36,7 @@ export default class Scheme extends Component {
       }
       this.props.dispatchReportAddressList().then((res) => {
           this.setState({
-              selector: res
+              addressSelector: res
           })
 
           this.props.dispatchReportSchemeList({'addressId':this.state.addressId}).then((res) => {
@@ -47,12 +47,13 @@ export default class Scheme extends Component {
       })
   }
 
-  onChange = e => {
-      let addressId = this.state.selector[e.detail.value].addressId
+    onAddressChange = e => {
+
+      let addressId = this.state.addressSelector[e.detail.value].addressId
 
       this.setState({
-          selectorChecked: this.state.selector[e.detail.value].addressDetail,
-          addressDetail: this.state.selector[e.detail.value].addressDetail,
+          selectorChecked: this.state.addressSelector[e.detail.value].addressDetail,
+          addressDetail: this.state.addressSelector[e.detail.value].addressDetail,
           addressId:addressId
       })
 
@@ -87,13 +88,10 @@ export default class Scheme extends Component {
     return (
       <View className='scheme'>
         <View className='scheme__wrap'>
-          <View className='page-section'>
-          <Text>收货地址</Text>
           <View>
-              <Picker mode='selector' range={this.state.selector} rangeKey='addressDetail' onChange={this.onChange}>
-                    <View className='picker'> 当前选择：{this.state.selectorChecked} </View>
+              <Picker mode='selector' range={this.state.addressSelector} rangeKey='addressDetail' onChange={this.onAddressChange}>
+                    <View className='picker'> 收货地址：{this.state.addressChecked} </View>
               </Picker>
-          </View>
           </View>
           <AtButton formType='submit' onClick={this.toDetail.bind(this)}>添加方案</AtButton>
           <AtList className='address__list'>
