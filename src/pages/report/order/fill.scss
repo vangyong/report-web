@@ -1,0 +1,9 @@
+@import "@styles/theme.scss";
+
+.fill {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 50px 40px 700px;
+  background: #ffffff;
+}

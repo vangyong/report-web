@@ -171,7 +171,6 @@ export default class Detail extends Component {
 
         <AtTextarea count={false} value={this.state.expressOrder}
         onChange={this.handleExpressOrder.bind(this)}
-        maxLength={2000}
         placeholder='运单号'/>
 
         < AtInput

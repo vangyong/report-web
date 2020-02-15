@@ -10,7 +10,7 @@ import listTitle from "../../../assets/list-title.png";
 @connect(state => state.report, { ...actions })
 export default class Order extends Component {
   config = {
-    navigationBarTitleText: '收货地址'
+    navigationBarTitleText: '上报单号'
   }
 
   constructor () {
@@ -45,16 +45,15 @@ export default class Order extends Component {
     return (
       <View className='order'>
         <View className='order__wrap'>
-          <AtButton formType='submit' onClick={this.toDetail.bind(this)}>添加报单</AtButton>
           <AtList className='address__list'>
             {
               list.map(item=>(
                   <AtListItem
                     key={item.orderId}
                     title={item.nickName}
-                    note={item.detailContent}
+                    note={item.alipayAccount}
                     arrow='right'
-                    extraText={item.status==1?'上报':'关闭'}
+                    extraText={item.payType==1?'在线付':'货到付'}
                     onClick={this.toDetail.bind(this,item)}
                     thumb={listTitle}
                   />

@@ -153,3 +153,4 @@ export const API_REPORT_SCHEME_LIST = `${report_host}/v2/scheme/list`
 // report_order
 export const API_REPORT_ORDER = `${report_host}/v2/order`
 export const API_REPORT_ORDER_LIST = `${report_host}/v2/order/list`
+export const API_REPORT_ORDER_QUERY = `${report_host}/v2/order/query`

@@ -1,9 +1,9 @@
 import { REPORT_ADDRESS_CREATE, REPORT_ADDRESS_UPDATE,REPORT_ADDRESS_DELETE, REPORT_ADDRESS_LIST, REPORT_ADDRESS_GET,REPORT_ADDRESS_STATUS,
     REPORT_SCHEME_CREATE, REPORT_SCHEME_UPDATE,REPORT_SCHEME_DELETE, REPORT_SCHEME_LIST, REPORT_SCHEME_GET,
-    REPORT_ORDER_CREATE, REPORT_ORDER_UPDATE,REPORT_ORDER_DELETE, REPORT_ORDER_LIST, REPORT_ORDER_GET} from '@constants/report'
+    REPORT_ORDER_CREATE, REPORT_ORDER_UPDATE,REPORT_ORDER_DELETE, REPORT_ORDER_LIST, REPORT_ORDER_GET,REPORT_ORDER_QUERY} from '@constants/report'
 import { API_REPORT_ADDRESS, API_REPORT_ADDRESS_LIST,API_REPORT_ADDRESS_STATUS,
     API_REPORT_SCHEME, API_REPORT_SCHEME_LIST,
-    API_REPORT_ORDER, API_REPORT_ORDER_LIST,} from '@constants/api'
+    API_REPORT_ORDER, API_REPORT_ORDER_LIST,API_REPORT_ORDER_QUERY} from '@constants/api'
 import { createAction } from '@utils/redux'
 
 /**
@@ -184,6 +184,18 @@ export const dispatchReportOrderList = payload => createAction({
 export const dispatchReportOrderGet = payload => createAction({
     url: API_REPORT_ORDER+`/${payload.orderId}`,
     type: REPORT_ORDER_GET,
+    method: 'GET',
+    payload
+})
+
+
+/**
+ * 查询报单
+ * @param {*} payload
+ */
+export const dispatchReportOrderQuery = payload => createAction({
+    url: API_REPORT_ORDER_QUERY,
+    type: REPORT_ORDER_QUERY,
     method: 'GET',
     payload
 })
