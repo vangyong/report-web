@@ -84,11 +84,11 @@ export default class Order extends Component {
   toDetail (item) {
     if(item && item.orderId){
       Taro.navigateTo({
-        url: `/pages/report/order/detail/index?orderId=`+item.orderId
+        url: `/pages/report/order/detail/index?orderId=`+item.orderId+`&addressId=`+ item.addressId+`&addressDetail=`+ item.addressDetail
       })
     }else{
       Taro.navigateTo({
-        url: `/pages/report/order/detail/index`
+        url: `/pages/report/order/detail/index?addressId=`+ this.state.addressId+`&addressDetail=`+ this.state.addressDetail
       })
     }
   }
