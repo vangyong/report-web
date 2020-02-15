@@ -39,11 +39,10 @@ export default class Fill extends Component {
         }
   }
 
-  toDetail (item,addressId) {
-      console.log(addressId)
+  toDetail (item) {
     if(item && item.addressId){
       Taro.navigateTo({
-        url: `/pages/report/order/detail/index?addressId=`+item.addressId
+        url: `/pages/report/order/detail/index?addressId=`+ item.addressId+`&addressDetail=`+ item.addressDetail
       })
     }else{
       Taro.navigateTo({
@@ -62,8 +61,8 @@ export default class Fill extends Component {
               list.map(item=>(
                   < View className = 'address__wrap' >
                     <AtTextarea value={item.addressDetail} />
-                    <AtButton onClick={this.toQuery.bind(this,item.addressId)}>查询</AtButton>
-                    <AtButton onClick={this.toDetail.bind(this,item.addressId)}>报单</AtButton>
+                    <AtButton onClick={this.toQuery.bind(this,item)}>查询</AtButton>
+                    <AtButton onClick={this.toDetail.bind(this,item)}>报单</AtButton>
                   </View>
                 )
               )

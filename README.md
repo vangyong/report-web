@@ -46,5 +46,9 @@
     3. 当前只适配了 375px 屏幕，若用 iOS 模拟器打开的不是 iPhone 6/7/8，可点击顶部菜单 Hardware -> iOS xx 切换设备
 
 
+## 访问链接
+管理端：http://127.0.0.1:12001/#/pages/report/manager/manager
+用户报单：http://127.0.0.1:12001/#/pages/report/order/fill
+
 # license 
 [MIT](www.fengtuwei.com) Copyright (c) 2019-present 

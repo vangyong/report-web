@@ -20,8 +20,10 @@ export default class Detail extends Component {
         this.state = {
             orderId: '',
             nickName: '',
-            detailContent: '',
-            status: ''
+            addressDetail: '',
+            status: '',
+            schemeSelector: [],
+            schemeChecked: '',
         }
     }
 
@@ -31,6 +33,13 @@ export default class Detail extends Component {
         let addressDetail = this.$router.params.addressDetail
         let schemeId = this.$router.params.schemeId
         let schemeDetail = this.$router.params.schemeDetail
+
+
+        this.props.dispatchReportSchemeList({'addressId':addressId}).then((res) => {
+            this.setState({
+                schemeSelector: res
+            })
+        })
 
         if (orderId != undefined) {
             this.props.dispatchReportOrderGet({orderId: orderId}).then((res) => {
@@ -60,6 +69,15 @@ export default class Detail extends Component {
                 schemeDetail: schemeDetail,
             })
         }
+    }
+
+    onSchemeChange = e => {
+        let schemeId = this.state.schemeSelector[e.detail.value].schemeId
+        this.setState({
+            schemeChecked: this.state.schemeSelector[e.detail.value].schemeDetail,
+            schemeDetail: this.state.schemeSelector[e.detail.value].schemeDetail,
+            schemeId:schemeId
+        })
     }
 
     handleChange(key, value) {
@@ -106,8 +124,13 @@ export default class Detail extends Component {
         }
         if (!this.state.orderId) {
             this.props.dispatchReportOrderCreate(payload).then((res) => {
+                Taro.showToast({
+                    title: '报单上报成功',
+                    icon: 'none'
+                })
+
                 Taro.navigateTo({
-                    url: `/pages/report/order/order`
+                    url: `/pages/report/order/fill`
                 })
             }).catch(() => {
                 Taro.showToast({
@@ -117,8 +140,13 @@ export default class Detail extends Component {
             })
         } else {
             this.props.dispatchReportOrderUpdate(payload).then((res) => {
+                Taro.showToast({
+                    title: '报单更新成功',
+                    icon: 'none'
+                })
+
                 Taro.navigateTo({
-                    url: `/pages/report/order/order`
+                    url: `/pages/report/order/fill`
                 })
             }).catch(() => {
                 Taro.showToast({
@@ -154,20 +182,18 @@ export default class Detail extends Component {
         onChange = {this.handleChange.bind(this, 'addressDetail')}
         />
 
-        < AtInput
-        name = 'schemeDetail'
-        title = '方案：'
-        type = 'text'
-        placeholder = '详细方案'
-        value = {this.state.schemeDetail}
-        onChange = {this.handleChange.bind(this, 'schemeDetail')}
-        />
+        <View>
+            <Picker mode='selector' range={this.state.schemeSelector} rangeKey='schemeDetail' onChange={this.onSchemeChange}>
+               <View className='picker'> 方案：{this.state.schemeChecked} </View>
+            </Picker>
+        </View>
 
-        < AtSwitch
-        title = '支付方式(1:在线付,2:货到付)'
-        checked = {this.state.payType}
-        onChange = {this.handlePayType.bind(this)}
-        />
+        <AtRadio
+        options={[
+                { label: '在线付', value: '1' },
+                { label: '货到付', value: '2' }
+                ]}
+        value={this.state.payType} onClick={this.handlePayType.bind(this)} />
 
         <AtTextarea count={false} value={this.state.expressOrder}
         onChange={this.handleExpressOrder.bind(this)}
