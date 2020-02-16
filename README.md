@@ -47,8 +47,8 @@
 
 
 ## 访问链接
-管理端：http://127.0.0.1:12001/#/pages/report/manager/manager
-用户报单：http://127.0.0.1:12001/#/pages/report/order/fill
+管理端：http://127.0.0.1:18001/#/pages/report/manager/manager
+用户报单：http://127.0.0.1:18001/#/pages/report/order/fill
 
 # license 
 [MIT](www.fengtuwei.com) Copyright (c) 2019-present 

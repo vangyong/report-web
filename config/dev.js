@@ -31,7 +31,7 @@ module.exports = {
     h5: {
         devServer: {
             host: '0.0.0.0',
-            port: 12001,
+            port: 18001,
             proxy: {
                 '/v1': {
                     target: HOST,
