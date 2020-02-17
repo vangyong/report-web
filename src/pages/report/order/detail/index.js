@@ -50,9 +50,10 @@ export default class Detail extends Component {
                     schemeId: res.schemeId,
                     schemeDetail: res.schemeDetail,
                     schemeChecked: res.schemeDetail,
-                    payType: res.payType,
+                    payType: ''+res.payType,
                     status: res.status,
                     expressOrder: res.expressOrder,
+                    couponLateMoney:res.couponLateMoney,
                     payMoney: res.payMoney,
                     expressTotal: res.expressTotal,
                     alipayAccount: res.alipayAccount,
@@ -115,8 +116,9 @@ export default class Detail extends Component {
             nickName: this.state.nickName,
             schemeId: this.state.schemeId,
             schemeDetail: this.state.schemeDetail,
-            payType: this.state.payType,
+            payType: ''+this.state.payType,
             expressOrder: this.state.expressOrder,
+            couponLateMoney:this.state.couponLateMoney,
             payMoney: this.state.payMoney,
             expressTotal: this.state.expressTotal,
             alipayAccount: this.state.alipayAccount,
@@ -201,20 +203,28 @@ export default class Detail extends Component {
         placeholder='运单号'/>
 
         < AtInput
-        name = 'payMoney'
-        title = '支付金额：'
+        name = 'couponLateMoney'
+        title = '券后金额：'
         type = 'text'
-        placeholder = '支付金额(本金+返佣)'
-        value = {this.state.payMoney}
-        onChange = {this.handleChange.bind(this, 'payMoney')}/>
+        placeholder = '券后金额'
+        value = {this.state.couponLateMoney}
+        onChange = {this.handleChange.bind(this, 'couponLateMoney')}/>
 
         < AtInput
         name = 'expressTotal'
-        title = '运单总数：'
+        title = '几单：'
         type = 'text'
-        placeholder = '运单总数'
+        placeholder = '几单'
         value = {this.state.expressTotal}
         onChange = {this.handleChange.bind(this, 'expressTotal')}/>
+
+        < AtInput
+        name = 'payMoney'
+        title = '应返总额：'
+        type = 'text'
+        placeholder = '应返总额(本金+佣金)。到付只填红包'
+        value = {this.state.payMoney}
+        onChange = {this.handleChange.bind(this, 'payMoney')}/>
 
         < AtInput
         name = 'alipayAccount'

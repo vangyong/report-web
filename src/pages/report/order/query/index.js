@@ -83,9 +83,10 @@ export default class Query extends Component {
                     addressDetail: order.addressDetail,
                     schemeId: order.schemeId,
                     schemeDetail: order.schemeDetail,
-                    payType: order.payType,
+                    payType: ''+order.payType,
                     status: order.status,
                     expressOrder: order.expressOrder,
+                    couponLateMoney:order.couponLateMoney,
                     payMoney: order.payMoney,
                     expressTotal: order.expressTotal,
                     alipayAccount: order.alipayAccount,
@@ -138,6 +139,7 @@ export default class Query extends Component {
         < AtButton onClick = {this.handleSubmit.bind(this)}> 查询 < /AtButton>
 
         < AtInput
+        disabled
         name = 'addressDetail'
         title = '详细地址：'
         type = 'text'
@@ -146,6 +148,7 @@ export default class Query extends Component {
         />
 
         < AtInput
+        disabled
         name = 'schemeDetail'
         title = '方案：'
         type = 'text'
@@ -153,32 +156,39 @@ export default class Query extends Component {
         value = {this.state.schemeDetail}
         />
 
-        <AtRadio
-        options={[
-                { label: '在线付', value: '1' },
-        { label: '货到付', value: '2' }
-    ]}
-        value={this.state.payType} onClick={this.handlePayType.bind(this)} />
+        <AtRadio options={[{ label: '在线付', value: '1', disabled: true },{ label: '货到付', value: '2' , disabled: true}]}
+        value={this.state.payType} onClick= {this.handlePayType.bind(this)} />
 
-        <AtTextarea count={false} value={this.state.expressOrder}
-        maxLength={2000}
-        placeholder='运单号'/>
+        <AtTextarea  disabled count={false} value={this.state.expressOrder} maxLength={2000} placeholder='运单号'/>
 
         < AtInput
-        name = 'payMoney'
-        title = '支付金额：'
+        disabled
+        name = 'couponLateMoney'
+        title = '券后金额：'
         type = 'text'
-        placeholder = '支付金额(本金+返佣)'
-        value = {this.state.payMoney}/>
+        placeholder = '券后金额'
+        value = {this.state.couponLateMoney}
+        onChange = {this.handleChange.bind(this, 'couponLateMoney')}/>
+
 
         < AtInput
+        disabled
         name = 'expressTotal'
-        title = '运单总数：'
+        title = '几单：'
         type = 'text'
-        placeholder = '运单总数'
+        placeholder = '几单'
         value = {this.state.expressTotal}/>
 
         < AtInput
+        disabled
+        name = 'payMoney'
+        title = '应返总额：'
+        type = 'text'
+        placeholder = '应返总额(本金+返佣)。到付只填红包'
+        value = {this.state.payMoney}/>
+
+        < AtInput
+        disabled
         name = 'alipayAccount'
         title = 'ZFB帐号：'
         type = 'text'
@@ -186,6 +196,7 @@ export default class Query extends Component {
         value = {this.state.alipayAccount}/>
 
         < AtInput
+        disabled
         name = 'realName'
         title = '真实姓名：'
         type = 'text'
@@ -193,6 +204,7 @@ export default class Query extends Component {
         value = {this.state.realName}/>
 
         < AtInput
+        disabled
         name = 'remarks'
         title = '备注说明：'
         type = 'text'
