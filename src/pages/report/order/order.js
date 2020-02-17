@@ -84,11 +84,11 @@ export default class Order extends Component {
   toDetail (item) {
     if(item && item.orderId){
       Taro.navigateTo({
-        url: `/pages/report/order/detail/index?orderId=`+item.orderId+`&addressId=`+ item.addressId+`&addressDetail=`+ item.addressDetail
+        url: `/pages/report/order/detail/index?orderId=`+item.orderId+`&addressId=`+ item.addressId+`&addressDetail=`+ item.addressDetail+`&schemeId=`+ item.schemeId+`&schemeDetail=`+ item.schemeDetail
       })
     }else{
       Taro.navigateTo({
-        url: `/pages/report/order/detail/index?addressId=`+ this.state.addressId+`&addressDetail=`+ this.state.addressDetail
+        url: `/pages/report/order/detail/index?addressId=`+ this.state.addressId+`&addressDetail=`+ this.state.addressDetail+`&schemeId=`+ this.state.schemeId+`&schemeDetail=`+ this.state.schemeDetail
       })
     }
   }

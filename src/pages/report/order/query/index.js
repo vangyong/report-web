@@ -21,22 +21,46 @@ export default class Query extends Component {
             orderId: '',
             nickName: '',
             detailContent: '',
-            status: ''
+            status: '',
+            schemeSelector: [],
+            schemeChecked: '',
         }
     }
 
     componentDidShow() {
         let addressId = this.$router.params.addressId
         let addressDetail = this.$router.params.addressDetail
+
+        this.props.dispatchReportSchemeList({'addressId':addressId}).then((res) => {
+            this.setState({
+                schemeSelector: res
+            })
+        })
+
         this.setState({
             addressId: addressId,
             addressDetail: addressDetail,
         })
     }
 
+    onSchemeChange = e => {
+        let schemeId = this.state.schemeSelector[e.detail.value].schemeId
+        this.setState({
+            schemeChecked: this.state.schemeSelector[e.detail.value].schemeDetail,
+            schemeDetail: this.state.schemeSelector[e.detail.value].schemeDetail,
+            schemeId:schemeId
+        })
+    }
+
     handleChange(key, value) {
         this.setState({
             [key]: value
+        })
+    }
+
+    handlePayType = value => {
+        this.setState({
+            payType: value
         })
     }
 
@@ -49,7 +73,7 @@ export default class Query extends Component {
             return
         }
 
-        this.props.dispatchReportOrderQuery({alipayAccount: this.state.alipayAccount}).then((res) => {
+        this.props.dispatchReportOrderQuery({alipayAccount: this.state.alipayAccount,addressId:this.state.addressId,schemeId:this.state.schemeId}).then((res) => {
             if(res && res[0]){
                 let order = res[0]
                 this.setState({
@@ -73,6 +97,16 @@ export default class Query extends Component {
                     title: '未查询到报单',
                     icon: 'none'
                 })
+                this.setState({
+                    payType: '',
+                    status: '',
+                    expressOrder: '',
+                    payMoney: '',
+                    expressTotal: '',
+                    realName: '',
+                    remarks: ''
+                })
+
             }
         })
 
@@ -94,6 +128,13 @@ export default class Query extends Component {
         onChange = {this.handleChange.bind(this, 'alipayAccount')}
         />
 
+        <View>
+            <Picker mode='selector' range={this.state.schemeSelector} rangeKey='schemeDetail' onChange={this.onSchemeChange}>
+                <View className='picker'> 方案：{this.state.schemeChecked} </View>
+            </Picker>
+        </View>
+
+
         < AtButton onClick = {this.handleSubmit.bind(this)}> 查询 < /AtButton>
 
         < AtInput
@@ -112,10 +153,12 @@ export default class Query extends Component {
         value = {this.state.schemeDetail}
         />
 
-        < AtSwitch
-        title = '支付方式(1:在线付,2:货到付)'
-        checked = {this.state.payType}
-        />
+        <AtRadio
+        options={[
+                { label: '在线付', value: '1' },
+        { label: '货到付', value: '2' }
+    ]}
+        value={this.state.payType} onClick={this.handlePayType.bind(this)} />
 
         <AtTextarea count={false} value={this.state.expressOrder}
         maxLength={2000}

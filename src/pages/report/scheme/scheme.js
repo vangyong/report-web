@@ -29,7 +29,7 @@ export default class Scheme extends Component {
       let addressDetail = this.$router.params.addressDetail
       if(addressId!=null&&addressDetail!=null){
           this.setState({
-              selectorChecked: addressDetail,
+              addressChecked: addressDetail,
               addressDetail: addressDetail,
               addressId:addressId
           })
@@ -52,7 +52,7 @@ export default class Scheme extends Component {
       let addressId = this.state.addressSelector[e.detail.value].addressId
 
       this.setState({
-          selectorChecked: this.state.addressSelector[e.detail.value].addressDetail,
+          addressChecked: this.state.addressSelector[e.detail.value].addressDetail,
           addressDetail: this.state.addressSelector[e.detail.value].addressDetail,
           addressId:addressId
       })

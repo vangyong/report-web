@@ -34,7 +34,6 @@ export default class Detail extends Component {
         let schemeId = this.$router.params.schemeId
         let schemeDetail = this.$router.params.schemeDetail
 
-
         this.props.dispatchReportSchemeList({'addressId':addressId}).then((res) => {
             this.setState({
                 schemeSelector: res
@@ -50,6 +49,7 @@ export default class Detail extends Component {
                     addressDetail: res.addressDetail,
                     schemeId: res.schemeId,
                     schemeDetail: res.schemeDetail,
+                    schemeChecked: res.schemeDetail,
                     payType: res.payType,
                     status: res.status,
                     expressOrder: res.expressOrder,
@@ -67,6 +67,7 @@ export default class Detail extends Component {
                 addressDetail: addressDetail,
                 schemeId: schemeId,
                 schemeDetail: schemeDetail,
+                schemeChecked: schemeDetail,
             })
         }
     }
