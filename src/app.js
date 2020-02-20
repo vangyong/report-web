@@ -126,13 +126,11 @@ class App extends Component {
   // 请勿修改此函数
   render() {
     return (
-      < Provider
-    store = {store} >
-      < Index / >
-      < /Provider>
+      <Provider store={store}>
+      <Index/>
+      </Provider>
   )
   }
 }
 
-Taro.render( < App / >, document.getElementById('app')
-)
+Taro.render(<App/>, document.getElementById('app'))
